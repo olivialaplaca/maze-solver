@@ -1,5 +1,6 @@
 from window import Point
 from cell import Cell
+import random
 
 class Maze:
     def __init__(
@@ -35,11 +36,19 @@ class Maze:
         top_left = Point(self.x1 + self.cell_size_x * i, self.y1 + self.cell_size_y * j)
         bottom_right = Point(self.x1 + self.cell_size_x * (i + 1), self.y1 + self.cell_size_y * (j + 1))
         c = self._cells[i][j]
-        c.draw( top_left, bottom_right)
+        c.draw(top_left, bottom_right)
         self._animate()
 
     def _animate(self):
         if not self.win:
             return
         self.win.redraw()
-        self.win.root.after(500)
+        self.win.root.after(50)
+
+    def _break_entrance_and_exit(self):
+        top_cell = self._cells[0][0]
+        top_cell.has_top_wall = False
+        self._draw_cell(0, 0)
+        bottom_cell = self._cells[self.num_cols-1][self.num_rows-1]
+        bottom_cell.has_bottom_wall = False
+        self._draw_cell(self.num_cols-1, self.num_rows-1)

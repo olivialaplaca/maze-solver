@@ -22,8 +22,8 @@ def main():
     cell_4.has_left_wall = False
     cell_4.draw(Point(300, 300), Point(450, 450))
     cell_4.draw_move(cell_3)
-    Maze(300,300,4,4,20,20,win)
-
+    m1 = Maze(300,300,4,4,20,20,win)
+    m1._break_entrance_and_exit()
     win.wait_for_close()
 
 

@@ -19,18 +19,27 @@ class Cell:
         self._y1 = top_left_corner.y
         self._x2 = bottom_right_corner.x
         self._y2 = bottom_right_corner.y
+
+        top_wall = Line(top_left_corner, Point(bottom_right_corner.x, top_left_corner.y))
         if self.has_top_wall:
-            top_wall = Line(top_left_corner, Point(bottom_right_corner.x, top_left_corner.y))
             self._win.draw_line(top_wall)
+        else:
+            self._win.draw_line(top_wall, "white")
+        left_wall = Line(top_left_corner, Point(top_left_corner.x, bottom_right_corner.y))
         if self.has_left_wall:
-            left_wall = Line(top_left_corner, Point(top_left_corner.x, bottom_right_corner.y))
             self._win.draw_line(left_wall)
+        else:
+            self._win.draw_line(left_wall, "white")
+        bottom_wall = Line(Point(top_left_corner.x, bottom_right_corner.y), bottom_right_corner)
         if self.has_bottom_wall:
-            bottom_wall = Line(Point(top_left_corner.x, bottom_right_corner.y), bottom_right_corner)
             self._win.draw_line(bottom_wall)
+        else:
+            self._win.draw_line(bottom_wall, "white")
+        right_wall = Line(bottom_right_corner, Point(bottom_right_corner.x, top_left_corner.y))
         if self.has_right_wall:
-            right_wall = Line(bottom_right_corner, Point(bottom_right_corner.x, top_left_corner.y))
             self._win.draw_line(right_wall)
+        else:
+            self._win.draw_line(right_wall, "white")
 
     def draw_move(self, to_cell, undo=False):
         center_of_self = Point((self._x2 + self._x1) / 2, (self._y2 + self._y1) / 2)
