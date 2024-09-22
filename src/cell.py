@@ -11,6 +11,7 @@ class Cell:
         self._y1 = None
         self._y2 = None
         self._win = win
+        self.visited = False
 
     def draw(self, top_left_corner, bottom_right_corner):
         if not self._win:
